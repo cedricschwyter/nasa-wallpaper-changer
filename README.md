@@ -1,5 +1,7 @@
 # nasa-wallpaper-changer
-This little tool changes your Linux wallpaper to NASA's Image Of The Day
+This little tool changes your Linux wallpaper daily to NASA's Astronomy Image Of The Day.
+It does that by installing a cronjob that runs this script every hour. 
+It works without NASA's APOD API, so no API-key is required.
 
 # Installing
 Execute the following commands:
