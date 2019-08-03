@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
-import os
+import os, getpass
 import subprocess
 import urllib.request as url
 from bs4 import BeautifulSoup
 
 
+USER = getpass.getuser()
 ROOT_URL = "https://apod.nasa.gov/apod/"
-IMG_DIR = "/usr/local/src/nasa-image/"
+IMG_DIR = "/home/" + USER + "/Pictures/nasa-image/"
 IMG_STUB = "nasa-iotd.jpg"
 
 
@@ -36,12 +37,7 @@ def extract_iotd_from_nasa_iotd_site():
 
 def set_gnome_wallpaper(file_path_):
 
-    command = "gconftool-2 --set \
-            /desktop/gnome/background/picture_filename \
-            --type string '%s'" % file_path_
-    status, output = subprocess.getstatusoutput(command)
-
-    return status
+    subprocess.Popen("DISPLAY=:0 GSETTINGS_BACKEND=dconf /usr/bin/gsettings set org.gnome.desktop.background picture-uri file://{0}".format(file_path_), shell=True)
 
 
 def main():
@@ -60,6 +56,10 @@ def main():
 
         pass
 
+    except PermissionError:
+
+        print("Failed to create directory " + IMG_DIR + IMG_STUB + ", try run as superuser.")
+
     try:
 
         image_disk = open(IMG_DIR + IMG_STUB, "bw+")
@@ -67,17 +67,18 @@ def main():
         image_disk.close()
         print("Successfully written to destination directory")
         print("Attempting to set as background...")
-        if not set_gnome_wallpaper(IMG_DIR + IMG_STUB):
+        try:
 
+            set_gnome_wallpaper(IMG_DIR + IMG_STUB)
             print("Successfully set as background")
 
-        else:
+        except:
 
             print("Failed to set as background")
 
     except OSError:
 
-        print("Failed to create directory " + IMG_DIR + ", try run as superuser.")
+        print("Failed to create directory " + IMG_DIR + IMG_STUB + ", try run as superuser.")
 
 
 if __name__ == "__main__":
