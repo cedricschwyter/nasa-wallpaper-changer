@@ -56,29 +56,19 @@ def main():
 
         pass
 
-    except PermissionError:
-
-        print("Failed to create directory " + IMG_DIR + IMG_STUB + ", try run as superuser.")
-
+    image_disk = open(IMG_DIR + IMG_STUB, "bw+")      # Open file in binary and overwrite mode
+    image_disk.write(image_data)
+    image_disk.close()
+    print("Successfully written to destination directory")
+    print("Attempting to set as background...")
     try:
 
-        image_disk = open(IMG_DIR + IMG_STUB, "bw+")
-        image_disk.write(image_data)
-        image_disk.close()
-        print("Successfully written to destination directory")
-        print("Attempting to set as background...")
-        try:
+        set_gnome_wallpaper(IMG_DIR + IMG_STUB)
+        print("Successfully set as background")
 
-            set_gnome_wallpaper(IMG_DIR + IMG_STUB)
-            print("Successfully set as background")
+    except:
 
-        except:
-
-            print("Failed to set as background")
-
-    except OSError:
-
-        print("Failed to create directory " + IMG_DIR + IMG_STUB + ", try run as superuser.")
+        print("Failed to set as background")
 
 
 if __name__ == "__main__":
