@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Installing dependencies..."
+pip3 install bs4
+echo "Successfully installed dependencies"
 echo "Installing nasa-wallpaper-changer..."
 cp -R nasa-wallpaper-changer/ /usr/local/bin/nasa-wallpaper-changer
 echo "Installing new crontab..."
