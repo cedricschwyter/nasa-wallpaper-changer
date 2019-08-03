@@ -2,6 +2,7 @@
 This little tool changes your Linux wallpaper daily to NASA's Astronomy Image Of The Day.
 It does that by installing a cronjob that runs this script every hour. 
 It works without NASA's APOD API, so no API-key is required.
+The tool is built for Linux GNOME environments and was successfully tested on Debian.
 
 # Installing
 Execute the following commands:
