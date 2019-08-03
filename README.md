@@ -7,6 +7,10 @@ Execute the following commands:
     sudo git clone https://github.com/D3PSI/nasa-wallpaper-changer.git
     sudo ./install.sh
     
+And then run the tool like so (not as superuser!):
+
+    python3 -m /usr/local/bin/nasa-wallpaper-changer/nasa-wallpaper-changer
+    
 And you are ready to go. The tool will run every hour, at reboots and every day at 0:00 to check, if NASA has released a new Astronomy Image Of The Day. For that purpose, it will install 3 crontabs.
 
 # Uninstalling
