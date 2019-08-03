@@ -7,6 +7,7 @@ It works without NASA's APOD API, so no API-key is required.
 Execute the following commands:
     
     sudo git clone https://github.com/D3PSI/nasa-wallpaper-changer.git
+    cd nasa-wallpaper-changer/
     sudo ./install.sh
     
 And then run the tool like so (not as superuser!):
