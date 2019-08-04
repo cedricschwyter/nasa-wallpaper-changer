@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 USER = getpass.getuser()
 ROOT_URL = "https://apod.nasa.gov/apod/"
 IMG_DIR = "/home/" + USER + "/Pictures/nasa-image/"
-IMG_STUB = "nasa-iotd.jpg"
+IMG_STUB = ""
 
 
 def get_nasa_iotd_site():
@@ -56,6 +56,8 @@ def main():
 
         pass
 
+    onlyfiles = next(os.walk(IMG_DIR))[2] 
+    IMG_STUB = "nasa-iotd-" + str(len(onlyfiles)) + ".jpg"
     image_disk = open(IMG_DIR + IMG_STUB, "bw+")      # Open file in binary and overwrite mode
     image_disk.write(image_data)
     image_disk.close()
