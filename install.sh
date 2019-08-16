@@ -2,14 +2,13 @@
 
 echo "Installing dependencies..."
 pip3 install bs4
+pip3 install schedule
 echo "Successfully installed dependencies"
 echo "Installing nasa-wallpaper-changer..."
 cp -R nasa-wallpaper-changer/ /usr/local/bin/nasa-wallpaper-changer
 echo "Installing new crontab..."
 crontab -l > mycron
 echo "@reboot python3 /usr/local/bin/nasa-wallpaper-changer/nasa-wallpaper-changer.py" >> mycron
-echo "@hourly python3 /usr/local/bin/nasa-wallpaper-changer/nasa-wallpaper-changer.py" >> mycron
-echo "0 0 * * * python3 /usr/local/bin/nasa-wallpaper-changer/nasa-wallpaper-changer.py" >> mycron
 crontab mycron
 rm mycron
 echo "Successfully installed new crontab"

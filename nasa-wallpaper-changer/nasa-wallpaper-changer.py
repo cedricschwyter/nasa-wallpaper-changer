@@ -2,6 +2,7 @@
 
 import os, getpass
 import subprocess
+import schedule
 import urllib.request as url
 from bs4 import BeautifulSoup
 
@@ -75,4 +76,9 @@ def main():
 
 if __name__ == "__main__":
 
-    main()
+    schedule.every().hour.do(main)
+
+    while True:
+
+        schedule.run_pending()
+        time.sleep(120)
